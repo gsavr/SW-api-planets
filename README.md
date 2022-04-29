@@ -30,7 +30,7 @@ At the start you have a simple application which displays planets from Star Wars
 
 ## Mockups
 
-(./assets/screenshots/screen1-1.png)
+![Scrrenshot 1](./assets/screenshots/screen1-1.png)
 
 ## Tech stack
 
