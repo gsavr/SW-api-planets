@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchSinglePlanet } from "../../actions";
 import Film from "../Film/Film";
+import Loading from "../Loading/Loading";
 
 const Films = ({ planet, match, fetchSinglePlanet }) => {
   //console.log(props);
@@ -35,13 +36,15 @@ const Films = ({ planet, match, fetchSinglePlanet }) => {
     <div className="App">
       <div className="cont">
         <h1 className="sw-font">
+          {/* planet name will not display until api call is done */}
           Films featuring Planet: {planet ? planet.name : "..."}
         </h1>
       </div>
       {planet.films ? (
         <div className="details-wrapper">{displayFilmRow(planet.films)}</div>
       ) : (
-        <div className="sw-font"> "Loading"</div>
+        //when the fetch request is happening -- display loading spinners
+        <Loading />
       )}
     </div>
   );

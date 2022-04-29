@@ -24,7 +24,7 @@ const Planets = ({ fetchPlanets, planets }) => {
     page = planets.next.substr(planets.next.length - 1, 1);
     fetchPlanets(page);
   };
-
+  //will get page number for previous page navigation
   const prevPage = () => {
     page = planets.previous.substr(planets.previous.length - 1, 1);
     fetchPlanets(page);
@@ -51,7 +51,7 @@ const Planets = ({ fetchPlanets, planets }) => {
         action: (planet) => {
           //extract id from url
           const planetId = planet.url.replace(/[^0-9]/g, "");
-
+          //will redirect to planet films page
           history.push(`/planets/${planetId}/films`);
         },
       },
@@ -60,7 +60,7 @@ const Planets = ({ fetchPlanets, planets }) => {
         action: (planet) => {
           //extract id from url
           const planetId = planet.url.replace(/[^0-9]/g, "");
-
+          //will redirect to planet residents page
           history.push(`/planets/${planetId}/residents`);
         },
       },
@@ -69,7 +69,7 @@ const Planets = ({ fetchPlanets, planets }) => {
         action: (planet) => {
           //extract id from url
           const planetId = planet.url.replace(/[^0-9]/g, "");
-
+          //will redirect to planet detailss page
           history.push(`/planets/${planetId}`);
         },
       },
@@ -80,6 +80,7 @@ const Planets = ({ fetchPlanets, planets }) => {
     <div className="">
       <Grid data={data} />
       <div className="pg-bottom">
+        {/* button to navigate to previous page */}
         {!!planets.previous && (
           <Button
             className="pag-button sw-font"
@@ -90,6 +91,7 @@ const Planets = ({ fetchPlanets, planets }) => {
             Previous
           </Button>
         )}
+        {/* button to navigate to next page */}
         {!!planets.next && (
           <Button
             className="pag-button sw-font"
@@ -102,6 +104,7 @@ const Planets = ({ fetchPlanets, planets }) => {
         )}
         {planets.results ? (
           <span className="pag-button align-right sw-font">
+            {/* button(modal) to navigate to add planeet modal */}
             <img className="helper-bot-img" src={helperBot} alt="helper bot" />
             Missing a Panet? <ModalForm />
           </span>
@@ -113,6 +116,7 @@ const Planets = ({ fetchPlanets, planets }) => {
   );
 };
 
+//assign proptypes to headers
 Planets.propTypes = {
   name: PropTypes.string,
   rotation_period: PropTypes.number,

@@ -16,7 +16,7 @@ import ModalSubmitted from "../ModalSubmitted";
 import C3po from "../../assets/c3po.png";
 
 const ModalForm = () => {
-  //state that opens modal
+  //state to open modal
   const [isOpen, setIsOpen] = useState(false);
   //this state opens child modal with success / warning message
   const [thankYou, setThankYou] = useState(false);
@@ -84,6 +84,7 @@ const ModalForm = () => {
 
   return (
     <div>
+      {/* button displayed at bottom of planets component */}
       <span className="pg-bottm">
         <Button
           className="sw-font bttm-right"
@@ -94,6 +95,7 @@ const ModalForm = () => {
           Add
         </Button>
       </span>
+      {/* thank you state opens success/failure modal */}
       {thankYou && <ModalSubmitted />}
       <Modal
         centered

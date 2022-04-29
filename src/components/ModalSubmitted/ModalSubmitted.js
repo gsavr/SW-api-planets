@@ -5,10 +5,12 @@ import R2d2 from "../../assets/r2d2.png";
 import StormT from "../../assets/storm_t.png";
 
 const ModalSubmitted = () => {
+  //state to open modal
   const [isOpen, setIsOpen] = useState(true);
+  //state to show eithr success or failure
   const [success, setSuccess] = useState(true);
 
-  //set random success or failure message
+  //set random success or failure state
   useEffect(() => {
     setSuccess(!Math.round(Math.random()));
   }, []);
@@ -23,6 +25,7 @@ const ModalSubmitted = () => {
         toggle={() => setIsOpen(false)}
       >
         <ModalHeader className="sw-font" toggle={() => setIsOpen(false)}>
+          {/* Success or failure message state dependent */}
           {success ? (
             <div>
               {" "}

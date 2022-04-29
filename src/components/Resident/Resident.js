@@ -8,6 +8,7 @@ const Film = ({ fetchResident, id, resident }) => {
     fetchResident(id);
   }, []);
 
+  //details to display for each resident
   const details = [
     { label: "Resident Name", detail: resident.name },
     { label: "Height", detail: resident.height, unit: "cm" },
@@ -16,13 +17,14 @@ const Film = ({ fetchResident, id, resident }) => {
     { label: "Gender", detail: resident.gender },
   ];
 
+  //fn to display details
   const displayDetails = () => {
     return details.map((detail) => {
       return (
         <span className="details sw-font">
-          {"- "}
+          {"— "}
           {detail.label}: {detail.detail} {!!detail.unit && detail.unit}
-          {" -"}
+          {" —"}
         </span>
       );
     });

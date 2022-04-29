@@ -22,7 +22,7 @@ const Planet = ({ fetchSinglePlanet, planet, match }) => {
     { label: "Surface Water", detail: planet.surface_water, unit: "%" },
   ];
 
-  //function to display all details
+  //fn to display all details
   const displayDetails = () => {
     return details.map((detail) => {
       return (

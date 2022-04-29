@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchSinglePlanet } from "../../actions";
 import Resident from "../Resident/Resident";
+import Loading from "../Loading/Loading";
 
 const Residents = ({ planet, match, fetchSinglePlanet }) => {
   //console.log(props);
@@ -41,7 +42,8 @@ const Residents = ({ planet, match, fetchSinglePlanet }) => {
           {displayResidentRow(planet.residents)}
         </div>
       ) : (
-        <div className="sw-font"> "Loading"</div>
+        //when the fetch request is happening -- display loading spinners
+        <Loading />
       )}
     </div>
   );

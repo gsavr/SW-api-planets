@@ -1,5 +1,6 @@
 import "./Grid.css";
-import { Button, Spinner } from "reactstrap";
+import { Button } from "reactstrap";
+import Loading from "../Loading/Loading";
 
 const Grid = ({
   data: { header = [], headerCustom = [], values = [], actions = [] },
@@ -84,6 +85,7 @@ const Grid = ({
                   <td>{row.films.length}</td>
                 )}
                 {
+                  //call fn to display action buttons
                   <td className="gridActions">
                     {displayPlanetDetails(row, actions)}
                     {displayFilmsButton(row, actions)}
@@ -96,18 +98,7 @@ const Grid = ({
         </table>
       ) : (
         /* when the fetch request is happening -- display loading spinners */
-        <div>
-          <p className="sw-font">Loading...</p>
-          <Spinner color="dark" size="" type="grow">
-            Loading...
-          </Spinner>
-          <Spinner color="warning" size="" type="grow">
-            Loading...
-          </Spinner>
-          <Spinner color="dark" size="" type="grow">
-            Loading...
-          </Spinner>
-        </div>
+        <Loading />
       )}
     </div>
   );
