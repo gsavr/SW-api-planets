@@ -31,6 +31,13 @@ At the start you have a simple application which displays planets from Star Wars
 ## Mockups
 
 ![](./src/assets/screenshots/screen1-1.png)
+![](./src/assets/screenshots/screen1-2.png)
+![](./src/assets/screenshots/screen2-1.png)
+![](./src/assets/screenshots/screen3-1.png)
+![](./src/assets/screenshots/screen4-1.png)
+![](./src/assets/screenshots/screen5-1.png)
+![](./src/assets/screenshots/screen6-1.png)
+![](./src/assets/screenshots/screen7-1.png)
 
 ## Tech stack
 
