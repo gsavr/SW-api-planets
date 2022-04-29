@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.pag-button{
+  margin: 2px 2px
+}
+
+.align-right{
+  position:absolute;
+  right: 30px;
+  
+}
+
+.pg-bottom{
+  padding-top: 15px;
+  padding-bottom: 20px;
+}
+
+.helper-bot-img{
+  height:45px
+}

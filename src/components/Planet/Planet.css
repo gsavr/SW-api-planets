@@ -1,0 +1,14 @@
+.details{
+    font-size: large;
+    font-family: StarWars;
+    padding-top: 20px;
+}
+
+.details-upper{
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+.details-wrapper{
+    padding-bottom: 40px;
+}

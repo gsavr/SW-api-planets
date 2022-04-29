@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.details{
+  padding-top: 20px;
+}
+
+.details-upper{
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+.details-wrapper{
+  font-size: large;
+  padding: 30px 30px;
+}
