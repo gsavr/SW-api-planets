@@ -1,7 +1,6 @@
 import "./Planets.css";
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { fetchPlanets } from "../../actions";
+import { useState } from "react";
+import { useFetchPlanetsQuery } from "../../store/planetsApiSlice";
 import { useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
 import PropTypes from "prop-types";
@@ -10,27 +9,23 @@ import helperBot from "../../assets/bot.png";
 import Grid from "../Grid";
 import ModalForm from "../ModalForm";
 
-const Planets = ({ fetchPlanets, planets }) => {
-  //console.log(planets);
-
+const Planets = () => {
   const history = useHistory();
-  let page = 1;
+  const [page, setPage] = useState(1);
 
-  //will call API when component is rendered, since useEffect re-runs every time a component is updated, use ", [] " at the end
-  useEffect(() => fetchPlanets(page), []);
+  const { data = [] } = useFetchPlanetsQuery(page);
+  const planets = data;
 
   const nextPage = () => {
-    //substr will take the last character in the string for planets.next and pass it as page number to action creator
-    page = planets.next.substr(planets.next.length - 1, 1);
-    fetchPlanets(page);
+    //substr will take the last character in the string for planets.next and pass it as page number
+    setPage(planets.next.substr(planets.next.length - 1, 1));
   };
   //will get page number for previous page navigation
   const prevPage = () => {
-    page = planets.previous.substr(planets.previous.length - 1, 1);
-    fetchPlanets(page);
+    setPage(planets.previous.substr(planets.previous.length - 1, 1));
   };
 
-  const data = {
+  const queriedData = {
     header: [
       "name",
       "rotation_period",
@@ -78,7 +73,7 @@ const Planets = ({ fetchPlanets, planets }) => {
 
   return (
     <div className="">
-      <Grid data={data} />
+      <Grid data={queriedData} />
       <div className="pg-bottom">
         {/* button to navigate to previous page */}
         {!!planets.previous && (
@@ -130,9 +125,4 @@ Planets.propTypes = {
   films: PropTypes.number,
 };
 
-//will map API call from redux to state prop in component
-const mapStateToProps = (state) => {
-  return { planets: state.planets };
-};
-
-export default connect(mapStateToProps, { fetchPlanets })(Planets);
+export default Planets;

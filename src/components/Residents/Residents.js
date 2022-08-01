@@ -1,31 +1,25 @@
 import "./Residents.css";
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { fetchSinglePlanet } from "../../actions";
+import { useFetchPlanetByIdQuery } from "../../store/planetsApiSlice";
 import Resident from "../Resident/Resident";
 import Loading from "../Loading/Loading";
 
-const Residents = ({ planet, match, fetchSinglePlanet }) => {
-  //console.log(props);
-
+const Residents = ({ match }) => {
   //get id from params prop from browserRouter
-  const id = match.params.planetId;
+  const planetId = match.params.planetId;
 
   //will call API to get planet info when component is rendered.
-  useEffect(() => {
-    fetchSinglePlanet(id);
-  }, []);
-
-  let residentsArray = [1, 3, 4, 5, 6];
+  const { data = [] } = useFetchPlanetByIdQuery(planetId);
+  const planet = data;
 
   const displayResidentRow = (residents) => {
-    residentsArray = residents;
-    return residentsArray.map((resident) => {
+    //console.log(residents);
+    return residents.map((resident) => {
       const residentId = resident.replace(/[^0-9]/g, "");
       return (
-        <p key={residentId}>
+        <div key={residentId}>
           <Resident id={residentId} />
-        </p>
+          <br />
+        </div>
       );
     });
   };
@@ -49,8 +43,4 @@ const Residents = ({ planet, match, fetchSinglePlanet }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { planet: state.planet };
-};
-
-export default connect(mapStateToProps, { fetchSinglePlanet })(Residents);
+export default Residents;

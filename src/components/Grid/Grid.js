@@ -5,7 +5,7 @@ import Loading from "../Loading/Loading";
 const Grid = ({
   data: { header = [], headerCustom = [], values = [], actions = [] },
 }) => {
-  console.log(headerCustom);
+  //console.log(headerCustom);
   // Display Button Go to Films
   const displayFilmsButton = (row, actions) => {
     if (!!row.films.length) {

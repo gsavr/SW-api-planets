@@ -1,23 +1,22 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { fetchFilm } from "../../actions";
+import { useFetchFilmByIdQuery } from "../../store/planetsApiSlice";
+import LoadingSmall from "../LoadingSmall/LoadingSmall";
 
-const Film = ({ fetchFilm, id, film }) => {
+const Film = ({ id }) => {
   //will call API to get planet info when component is rendered.
-  useEffect(() => {
-    fetchFilm(id);
-  }, []);
+  const { data = [], isFetching } = useFetchFilmByIdQuery(id);
+  const film = data;
 
   return (
-    <div id={film.title} className="sw-font">
-      {film.title}
+    <div>
+      {isFetching ? (
+        <LoadingSmall />
+      ) : (
+        <div id={film.title} className="sw-font">
+          {film.title}
+        </div>
+      )}
     </div>
   );
 };
 
-//will map API call from redux to state prop in component
-const mapStateToProps = (state) => {
-  return { film: state.film };
-};
-
-export default connect(mapStateToProps, { fetchFilm })(Film);
+export default Film;

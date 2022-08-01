@@ -1,16 +1,14 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { fetchResident } from "../../actions";
+import { useFetchResidentByIdQuery } from "../../store/planetsApiSlice";
+import LoadingSmall from "../LoadingSmall";
 
-const Film = ({ fetchResident, id, resident }) => {
-  //will call API to get planet info when component is rendered.
-  useEffect(() => {
-    fetchResident(id);
-  }, []);
+const Resident = ({ id }) => {
+  //will call API to get resident info when component is rendered.
+  const { data = [], isFetching } = useFetchResidentByIdQuery(id);
+  const resident = data;
 
   //details to display for each resident
   const details = [
-    { label: "Resident Name", detail: resident.name },
+    { label: "Name", detail: resident.name },
     { label: "Height", detail: resident.height, unit: "cm" },
     { label: "Mass", detail: resident.mass, unit: "kg" },
     { label: "Birth Year", detail: resident.birth_year },
@@ -21,7 +19,7 @@ const Film = ({ fetchResident, id, resident }) => {
   const displayDetails = () => {
     return details.map((detail) => {
       return (
-        <span className="details sw-font">
+        <span key={resident.name} className="details sw-font">
           {"— "}
           {detail.label}: {detail.detail} {!!detail.unit && detail.unit}
           {" —"}
@@ -31,15 +29,15 @@ const Film = ({ fetchResident, id, resident }) => {
   };
 
   return (
-    <div id={resident.name} className="sw-font">
-      <p>{displayDetails()}</p>
+    <div>
+      {isFetching ? (
+        <LoadingSmall />
+      ) : (
+        /*  */
+        <p>{displayDetails()}</p>
+      )}
     </div>
   );
 };
 
-//will map API call from redux to state prop in component
-const mapStateToProps = (state) => {
-  return { resident: state.resident };
-};
-
-export default connect(mapStateToProps, { fetchResident })(Film);
+export default Resident;

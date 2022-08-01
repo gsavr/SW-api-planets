@@ -1,5 +1,5 @@
 import "./ModalSubmitted.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import R2d2 from "../../assets/r2d2.png";
 import StormT from "../../assets/storm_t.png";

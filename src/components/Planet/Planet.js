@@ -1,14 +1,14 @@
 import "./Planet.css";
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { fetchSinglePlanet } from "../../actions";
+import { useFetchPlanetByIdQuery } from "../../store/planetsApiSlice";
+import LoadingSmall from "../LoadingSmall/LoadingSmall";
 import rebel from "../../assets/rebel.png";
 
-const Planet = ({ fetchSinglePlanet, planet, match }) => {
+const Planet = ({ match }) => {
   //get id from params props in router
   const planetId = match.params.planetId;
-  //get detaiuls for planet
-  useEffect(() => fetchSinglePlanet(planetId), []);
+  //get details for planet
+  const { data = [], isFetching } = useFetchPlanetByIdQuery(planetId);
+  const planet = data;
 
   //list out of details
   const details = [
@@ -26,7 +26,7 @@ const Planet = ({ fetchSinglePlanet, planet, match }) => {
   const displayDetails = () => {
     return details.map((detail) => {
       return (
-        <div className="details">
+        <div key={detail.detail} className="details">
           {detail.label}: {detail.detail} {!!detail.unit && detail.unit}
         </div>
       );
@@ -45,16 +45,10 @@ const Planet = ({ fetchSinglePlanet, planet, match }) => {
       </div>
       <div className="details-wrapper">
         <p className="details details-upper">Planet Details:</p>
-        {displayDetails()}
+        {isFetching ? <LoadingSmall /> : displayDetails()}
       </div>
     </div>
   );
 };
 
-//will map API call from redux to state prop in component
-const mapStateToProps = (state) => {
-  //console.log(state.planet);
-  return { planet: state.planet };
-};
-
-export default connect(mapStateToProps, { fetchSinglePlanet })(Planet);
+export default Planet;

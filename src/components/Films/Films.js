@@ -1,33 +1,26 @@
 import "./Films.css";
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { fetchSinglePlanet } from "../../actions";
+import { useFetchPlanetByIdQuery } from "../../store/planetsApiSlice";
 import Film from "../Film/Film";
 import Loading from "../Loading/Loading";
 
-const Films = ({ planet, match, fetchSinglePlanet }) => {
-  //console.log(props);
-
+const Films = ({ match }) => {
   //get id from params prop from browserRouter
-  const id = match.params.planetId;
+  const planetId = match.params.planetId;
 
   //will call API to get planet info when component is rendered.
-  useEffect(() => {
-    fetchSinglePlanet(id);
-  }, []);
-
-  //create empty array to capture all film id's from planet prop
-  let filmsArray = [];
+  const { data = [] } = useFetchPlanetByIdQuery(planetId);
+  const planet = data;
+  console.log(planet);
 
   //fn to show films by passing id of each film to child Film component to call API
   const displayFilmRow = (films) => {
-    filmsArray = films;
-    return filmsArray.map((film) => {
+    return films.map((film) => {
       const filmId = film.replace(/[^0-9]/g, "");
       return (
-        <p key={filmId}>
+        <div key={filmId}>
           <span className="sw-font">Episode {filmId}</span> <Film id={filmId} />
-        </p>
+          <br />
+        </div>
       );
     });
   };
@@ -50,8 +43,4 @@ const Films = ({ planet, match, fetchSinglePlanet }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { planet: state.planet };
-};
-
-export default connect(mapStateToProps, { fetchSinglePlanet })(Films);
+export default Films;
