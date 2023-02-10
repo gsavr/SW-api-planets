@@ -9,10 +9,11 @@
   background-position: center;
   background-size: cover;
   box-sizing: border-box;
-  font-family: StarWars;
+  font-family: StarWars, sans-serif;
 }
 
-.not-found-page h1, .not-found-page p {
+.not-found-page h1,
+.not-found-page p {
   color: #fff;
   margin: 0;
 }

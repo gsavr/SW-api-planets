@@ -1,3 +1,7 @@
+.parent {
+  overflow-x: scroll;
+}
+
 .gridTable {
   /* border: 1px solid #000; */
   width: 100%;
@@ -21,7 +25,7 @@
   border-bottom: 1px solid #333;
 }
 
-.gridTable tbody tr:hover td  {
+.gridTable tbody tr:hover td {
   /* background: #f1f1f1; */
   background-color: rgb(80, 79, 79);
   color: #fff;
@@ -31,7 +35,6 @@
   margin: 1px 5px;
 }
 
-.action-button{
-  
+.action-button {
   font-size: small;
 }

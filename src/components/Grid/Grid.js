@@ -56,7 +56,7 @@ const Grid = ({
     }
   };
   return (
-    <div>
+    <div className="parent">
       {values.length ? (
         <table className="gridTable">
           <thead>

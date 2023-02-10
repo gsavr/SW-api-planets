@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -11,17 +11,19 @@ body {
   background-position: center;
   background-size: cover;
   box-sizing: border-box;
-
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 @font-face {
   font-family: "StarWars";
-  src: local("StarWars"),
-   url("./fonts/SfDistantGalaxy-0l3d.ttf") format("truetype");
-  font-weight:normal;
-  }
+  src: local("StarWars"), url("./fonts/sfdistantgalaxy-0l3d-webfont.eot");
+  src: url("./fonts/SfDistantGalaxy-0l3d.ttf") format("truetype"),
+    url("./fonts/sfdistantgalaxy-0l3d-webfont.woff") format("woff"),
+    url("./fonts/sfdistantgalaxy-0l3d-webfont.woff2") format("woff2");
+
+  font-weight: normal;
+}
